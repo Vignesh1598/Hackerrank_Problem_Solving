@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+#20 3 6 80
+# Complete the howManyGames function below.
+def howManyGames(p, d, m, s):
+    total=0
+    count=0
+    if s>p:
+        for i in range(p,m-1,-d):
+            if total<=s:
+                total+=i
+                if total<=s:
+                    count+=1
+        while s>=total+m:
+            total+=m
+            count+=1
+        print(total)
+        return count
+    else:
+        return 0
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    pdms = input().split()
+
+    p = int(pdms[0])
+
+    d = int(pdms[1])
+
+    m = int(pdms[2])
+
+    s = int(pdms[3])
+
+    answer = howManyGames(p, d, m, s)
+
+    fptr.write(str(answer) + '\n')
+
+    fptr.close()

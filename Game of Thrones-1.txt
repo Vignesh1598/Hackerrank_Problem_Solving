@@ -1,0 +1,43 @@
+#!/bin/python3
+from itertools import permutations
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the gameOfThrones function below.
+def gameOfThrones(s):
+    d={}
+    count=0
+    c=0
+    S=list(s)
+    for i in S:
+        d[i]=d.get(i,0)+1
+    for v in d.values():
+        if v<2:
+            count+=1
+        if v%2!=0:
+            c+=1
+    if count==1:
+        return "YES"
+    elif count>1:
+        return "NO"
+    if c>1:
+        return "NO"
+    return "YES"
+        
+        
+
+if __name__ == '__main__':
+    
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = gameOfThrones(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
+

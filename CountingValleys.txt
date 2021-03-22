@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+def countingValleys(n, s):
+    level=0
+    c=0
+    invalley='F'
+    new_s=[]
+    for i in s:
+        if i=='U':
+            level+=1
+            new_s.append(level)
+        elif i=='D':
+            level-=1
+            new_s.append(level)
+    print(new_s)
+    [1, 0, -1, -2, -1, -2, -1, 0]
+    for i in new_s:
+        if i<0 and invalley=='F':
+            invalley='T'
+        if i==0 and invalley=='T':
+            c+=1
+            invalley='F'
+
+    return c
+        
+            
+        
+
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    s = list(input())
+
+    result = countingValleys(n, s)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()

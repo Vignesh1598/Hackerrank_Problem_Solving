@@ -1,0 +1,45 @@
+#!/bin/python3
+from collections import Counter
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the equalizeArray function below.
+def equalizeArray(arr):
+    count=0
+    c=Counter(arr)
+    l=list(dict.fromkeys(arr))
+    maxi=0
+    a=0
+    print(c)
+    for i in l:
+        if c[i]>maxi:
+            maxi=c[i]
+    for i in l:
+        if c[i]==maxi:
+            a+=1
+        if a>1:
+            count+=c[i]
+            a=a-1
+        if c[i]!=maxi:
+            count+=c[i]
+    if maxi==1:
+        return(len(arr)-1)
+    else:
+        return count
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = equalizeArray(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
